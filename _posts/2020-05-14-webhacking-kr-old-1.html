@@ -5,6 +5,9 @@ subtitle: "쿠키에 대한 이해"
 date: 2020-05-14 06:10:00 -0400
 background: '/img/posts/webhacking-kr-old-1/background.png'
 ---
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
 <img src="/img/posts/webhacking-kr-old-1/web-01.png" alt="web-01.png">
 <p>
   1번 문제로 들어가면 위와 같은 창이 뜹니다.<br>
@@ -12,16 +15,18 @@ background: '/img/posts/webhacking-kr-old-1/background.png'
 </p>
 <img src="/img/posts/webhacking-kr-old-1/view-source-1.png" alt="view-source-1.png">
 <p>이제 이 코드를 살펴보도록 하겠습니다.</p>  
-```PHP
-<?php
+<pre>
+  <code>
+&lt;?php
   include "../../config.php";
   if($_GET['view-source'] == 1){ view_source(); }
   if(!$_COOKIE['user_lv']){
     SetCookie("user_lv","1",time()+86400*30,"/challenge/web-01/");
-    echo("<meta http-equiv=refresh content=0>");
+    echo("&lt;meta http-equiv=refresh content=0&gt;");
   }
-?>
-```
+?&gt;
+  <code>
+<pre>  
 <p>
   앞부분은 파일을 include 하는 내용과, 소스코드를 보여주기 위한 코드이기 때문에 문제를 푸는 데 필요한 내용이 아닙니다.<br>
   여기서 중요한 부분은 두 번째 if문 입니다.<br>
@@ -34,14 +39,16 @@ background: '/img/posts/webhacking-kr-old-1/background.png'
   위 소스코드에서 본 것과 같이, 실제로 쿠키가 생성되어 있음을 확인할 수 있었습니다.<br>
   쿠키 관련 작업은 크롬의 EditThisCookie 확장 프로그램을 사용하였습니다.
 </p>
-```PHP
-<?php
+<pre>
+  <code>
+&lt;?php
   if(!is_numeric($_COOKIE['user_lv'])) $_COOKIE['user_lv']=1;
-  if($_COOKIE['user_lv']>=6) $_COOKIE['user_lv']=1;
-  if($_COOKIE['user_lv']>5) solve(1);
-  echo "<br>level : {$_COOKIE['user_lv']}";
-?>
-```
+  if($_COOKIE['user_lv']&gt;=6) $_COOKIE['user_lv']=1;
+  if($_COOKIE['user_lv']&gt;5) solve(1);
+  echo "&lt;br&gt;level : {$_COOKIE['user_lv']}";
+?&gt;
+  </code>
+</pre>
 <p>
   다음으로 봐야 할 부분은 이 부분입니다.<br>
   user_lv 쿠키의 값이 숫자가 아니면 값을 1로 바꾸고, 6 이상의 값일 때에도 마찬가지로 값을 1로 바꿉니다.<br>
