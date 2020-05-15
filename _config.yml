@@ -1,10 +1,9 @@
 title:              aDecay's Diary
 email:              younghyeon55@gmail.com
 description:        Developing Daylife
-author:             
+author:             aDecay
 baseurl:            ""
 url:                "https://adecay.github.io"
-remote_theme :      BlackrockDigital/startbootstrap-clean-blog-jekyll
 
 # Social Profiles
 twitter_username:   
