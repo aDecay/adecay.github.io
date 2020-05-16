@@ -4,6 +4,7 @@ body {
   font-family: "NanumGothic", sans-serif;
   color: $gray-900;
   @include serif-font;
+  @include sans-serif-font;
 }
 
 p {
