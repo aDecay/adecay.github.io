@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://adecay.github.io/sitemap.xml
