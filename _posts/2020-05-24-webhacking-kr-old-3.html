@@ -15,7 +15,10 @@ sitemap:
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/web-03.png" alt="web-03.png"><br></center>
 <p>
-	3번 문제의 메인 화면입니다. 네모로직처럼 생긴 퍼즐과 함께 상단에 적힌 Nonogram이라는 문구를 볼 수 있습니다. 찾아보니 Nonogram이 네모로직이라고 하네요. 일단 먼저 퍼즐을 풀었습니다.<br>
+	3번 문제의 메인 화면입니다.<br>
+	네모로직처럼 생긴 퍼즐과 함께 상단에 적힌 Nonogram이라는 문구를 볼 수 있습니다.<br>
+	찾아보니 Nonogram이 네모로직이라고 하네요.<br>
+	일단 먼저 퍼즐을 풀었습니다.<br>
 	아래는 퍼즐 답입니다.
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/nonogram-solve.png" alt="nonogram-solve.png"><br></center>
@@ -29,23 +32,29 @@ sitemap:
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/name-result.png" alt="name-result.png"><br></center>
 <p>
-	name, answer, ip라는 3개의 값이 출력되네요. 이 값들이 어떻게 전달되는지 알기 위해 일단 name 입력 페이지의 소스를 봤습니다.
+	name, answer, ip라는 3개의 값이 출력되네요.<br>
+	이 값들이 어떻게 전달되는지 알기 위해 일단 name 입력 페이지의 소스를 봤습니다.
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/view-source-enter-name.png" alt="view-source-enter-name.png"><br></center>
 <p>
-	answer은 hidden 타입으로 값을 저장하고 있네요. name은 입력한 값이 직접 전달되고, ip는 클라이언트의 ip를 받는 것 같습니다.<br>
+	answer은 hidden 타입으로 값을 저장하고 있네요.<br>
+	name은 입력한 값이 직접 전달되고, ip는 클라이언트의 ip를 받는 것 같습니다.<br>
 	퍼즐 페이지의 소스를 보면 answer은 퍼즐을 풀 때 각 네모칸의 색이 검은색인지, 흰색인지를 1과 0으로 나열한 내용임을 알 수 있지만 여기서는 중요한 내용이 아니기 때문에 넘어가겠습니다.<br>
-	문제 중에서 유일하게 DB에 접근할 수 있는 부분이 이 페이지라 먼저 name에 injection을 수행했습니다. 먼저 maxlength=10으로 name의 입력 길이가 제한되어 있던 부분을 모자라지 않도록 100으로 늘려준 후 ' or 1=1 --과 ' or 1=1 # 를 name에 입력해봤습니다. 하지만 아래 결과처럼 별다른 변화 없이 값이 그대로 전달되었습니다.
+	문제 중에서 유일하게 DB에 접근할 수 있는 부분이 이 페이지라 먼저 name에 injection을 수행했습니다.<br>
+	먼저 maxlength=10으로 name의 입력 길이가 제한되어 있던 부분을 모자라지 않도록 100으로 늘려준 후 ' or 1=1 --과 ' or 1=1 # 를 name에 입력해봤습니다.<br>
+	하지만 아래 결과처럼 별다른 변화 없이 값이 그대로 전달되었습니다.
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/name-inject.png" alt="name-inject.png"><br></center>
 <p>
 	그래서 비슷한 내용을 name이 아닌 answer에도 시도해봤습니다.<br>
-	먼저 answer 값을 1010100000011100101011111' or 1=1 --로 설정하니 결과로 query error라는 문구가 나왔습니다. 문제를 풀진 못했지만 이 결과로 answer을 이용해 injection을 시도해 볼 수 있다는 것을 알 수 있습니다.
+	먼저 answer 값을 1010100000011100101011111' or 1=1 --로 설정하니 결과로 query error라는 문구가 나왔습니다.<br>
+	문제를 풀진 못했지만 이 결과로 answer을 이용해 injection을 시도해 볼 수 있다는 것을 알 수 있습니다.
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/answer-inject-1.png" alt="answer-inject-1.png"><br></center>
 <center><img src="/img/posts/webhacking-kr-old-3/query-error.png" alt="query-error.png"><br></center>
 <p>
-	그리고 1010100000011100101011111' or 1=1 #도 시도해봤습니다. 별다른 내용 없이 문제가 바로 풀립니다.
+	그리고 1010100000011100101011111' or 1=1 #도 시도해봤습니다.<br>
+	별다른 내용 없이 문제가 바로 풀립니다.
 </p>
 <center><img src="/img/posts/webhacking-kr-old-3/answer-inject-2.png" alt="answer-inject-2.png"><br></center>
 <center><img src="/img/posts/webhacking-kr-old-3/solved.png" alt="solved.png"><br></center>
