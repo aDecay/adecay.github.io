@@ -1,8 +1,6 @@
- 
 ---
 layout: post
 title: "[자료구조] 자료구조 개요"
-subtitle: ""
 date: 2021-07-22 23:40:00 -0400
 lastmod: 2021-07-22 23:40:00 -0400
 background: '/img/posts/webhacking-kr-background.png'
