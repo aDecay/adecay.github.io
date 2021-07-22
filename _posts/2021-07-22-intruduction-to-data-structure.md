@@ -20,4 +20,4 @@ sitemap:
 재사용성: 자료구조는 비슷한 상황의 다른 곳에서 재사용 가능하다.  
 추상화: 자료구조는 추상 자료형으로부터 구체화되기 때문에 구현의 세부 내용을 몰라도 인터페이스만 알면 사용할 수 있다.  
 # 자료구조의 분류
-![ClassificationOfDataStructure](/img/classification-of-data-structure.png)
+![ClassificationOfDataStructure](/img/posts/classification-of-data-structure.png)
